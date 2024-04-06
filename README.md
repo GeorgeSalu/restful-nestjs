@@ -1,6 +1,6 @@
 ## apis rest nestjs
 
- - TypeORM
+ - TypeORM/PrismaORM
  - NodeJs
  - Mysql/MongoDB
  - Docker
