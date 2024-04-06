@@ -2,7 +2,7 @@
 
  - TypeORM
  - NodeJs
- - Mysql
+ - Mysql/MongoDB
  - Docker
  - Typescript
  - Nestjs
