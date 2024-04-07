@@ -6,12 +6,12 @@ import { PeopleService } from './people.service';
 export class PeopleController {
 
     constructor(
-        private service: PeopleService
+        private peopleService: PeopleService
     ) {}
 
     @Get()
     list(@Res() response: Response) {
-        const list = this.service.list();
+        const list = this.peopleService.list();
         return response.status(200).send(list);
     }
 
