@@ -5,4 +5,4 @@
  - Mysql/MongoDB
  - Docker
  - Typescript
- - Nestjs
+ - NestJs
