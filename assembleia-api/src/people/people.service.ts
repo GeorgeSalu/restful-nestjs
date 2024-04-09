@@ -30,4 +30,11 @@ export class PeopleService {
     }
 
 
+    delete(id: number) {
+        const newList = this.people.filter(person => {
+            person.id != id;            
+        })
+        this.people = newList;
+    }
+
 }
