@@ -10,5 +10,9 @@ export class PeopleService {
         return this.people;
     }
 
+    save(person: Person) {
+        this.people.push(person);
+    }
+
 
 }

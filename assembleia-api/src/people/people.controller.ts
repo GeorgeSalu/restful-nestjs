@@ -1,6 +1,7 @@
-import { Controller, Get, Res } from '@nestjs/common';
+import { Body, Controller, Get, Post, Res } from '@nestjs/common';
 import { Response } from "express"
 import { PeopleService } from './people.service';
+import { Person } from './person';
 
 @Controller('people')
 export class PeopleController {
@@ -13,6 +14,12 @@ export class PeopleController {
     list(@Res() response: Response) {
         const list = this.peopleService.list();
         return response.status(200).send(list);
+    }
+
+    @Post()
+    save(@Body() person: Person, @Res() response: Response) {
+        this.peopleService.save(person);
+        return response.status(201).send("Salvo com sucesso");
     }
 
 }
