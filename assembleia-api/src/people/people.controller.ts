@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Res } from '@nestjs/common';
 import { Response } from "express"
 import { PeopleService } from './people.service';
 import { Person } from './person';
@@ -29,6 +29,18 @@ export class PeopleController {
     save(@Body() person: Person, @Res() response: Response) {
         this.peopleService.save(person);
         return response.status(201).send("Salvo com sucesso");
+    }
+
+    @Put('/:id')
+    update(@Param("id") id: number,@Body() personUpdateData: Person ,@Res() response: Response) {
+        const person = this.peopleService.findById(id);
+        if(!person) {
+            return response.status(404).send();
+        }
+
+        this.peopleService.update(id, personUpdateData);
+
+        return response.status(204).send("atualizado com sucesso");
     }
 
 }

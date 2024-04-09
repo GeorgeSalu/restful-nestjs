@@ -21,5 +21,13 @@ export class PeopleService {
         this.people.push(person);
     }
 
+    update(id: number, updatePerson: Person) {
+        this.people.forEach(function(person) {
+            if(id == person.id) {
+                person.name = updatePerson.name
+            }
+        })
+    }
+
 
 }
