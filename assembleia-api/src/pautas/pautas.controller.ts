@@ -13,7 +13,7 @@ export class PautasController {
 
     @Post()
     save(@Body() pauta: CriarPautaResource, @Res() response: Response) {
-        return pauta;
+        return response.status(201).send(pauta);
     }
 
 }
