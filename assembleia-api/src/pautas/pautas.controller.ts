@@ -1,0 +1,19 @@
+import { Body, Controller, Post, Res } from '@nestjs/common';
+import { PautasService } from './pautas.service';
+import { CriarPautaResource } from './pautas.resource';
+import { Response } from 'express'
+
+@Controller('pautas')
+export class PautasController {
+
+    constructor(
+        private readonly service: PautasService
+    ){}
+
+
+    @Post()
+    save(@Body() pauta: CriarPautaResource, @Res() response: Response) {
+        return pauta;
+    }
+
+}
