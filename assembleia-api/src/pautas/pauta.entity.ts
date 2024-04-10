@@ -6,7 +6,7 @@ export class Pauta {
     @PrimaryGeneratedColumn()
     id?: string;
 
-    @Column({ name: 'desc' })
+    @Column()
     descricao: string;
 
     @CreateDateColumn({ name: 'data_cadastro' })
