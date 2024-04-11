@@ -28,6 +28,17 @@ export class Pauta {
         return StatusPauta.NAO_INICIADA;
     }
 
+    public isFoiIniciada(): boolean {
+        const status = this.obterStatus();
+        return StatusPauta.INICIADA == status;
+    }
+
+
+    public isPossivelIniciarSessao(): boolean {
+        const status = this.obterStatus();
+        return StatusPauta.NAO_INICIADA == status;
+    }
+
 }
 
 enum StatusPauta {
