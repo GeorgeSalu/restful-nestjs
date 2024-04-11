@@ -10,4 +10,21 @@ export class PautasService {
         private readonly pautaRespository: Repository<Pauta>
     ){}
 
+    async save(pauta: Pauta): Promise<Pauta> {
+        const descricao = pauta.descricao;
+
+        const possivelPauta = await this.pautaRespository.findOne({
+            where: {
+                descricao: descricao
+            }
+        })
+
+        if(possivelPauta) {
+            throw Error("pauta existente");
+        }
+
+        pauta = await this.pautaRespository.save(pauta);
+        return pauta;
+    }
+
 }
