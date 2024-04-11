@@ -29,14 +29,20 @@ export class Pauta {
     }
 
     public isFoiIniciada(): boolean {
-        const status = this.obterStatus();
-        return StatusPauta.INICIADA == status;
+        return  this.isInStatus(StatusPauta.INICIADA);
     }
 
+    public isFoiEncerrada(): boolean {
+        return  this.isInStatus(StatusPauta.ENCERRADA);
+    }
 
     public isPossivelIniciarSessao(): boolean {
+        return  this.isInStatus(StatusPauta.NAO_INICIADA);
+    }
+
+    public isInStatus(statusVerificar: StatusPauta): boolean {
         const status = this.obterStatus();
-        return StatusPauta.NAO_INICIADA == status;
+        return status == statusVerificar;
     }
 
 }
