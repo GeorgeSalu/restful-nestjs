@@ -21,7 +21,7 @@ export class PautasService {
         })
 
         if(possivelPauta) {
-            return new Result(null, new Error("pautas existente"))
+            return new Result(null, new Error("pauta existente"))
         }
 
         pauta = await this.pautaRespository.save(pauta);
