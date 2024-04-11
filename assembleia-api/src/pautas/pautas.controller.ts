@@ -23,13 +23,17 @@ export class PautasController {
                         .send(new ErrorResponse(result.error.message))
         }
 
-        return response.status(HttpStatus.CREATED).send(toRepresentation(result.value));
+        return response
+                    .status(HttpStatus.CREATED)
+                    .send(toRepresentation(result.value));
     }
 
     @Get()
     async list(@Res() response: Response) {
         const result = await this.service.findAll();
-        return response.status(HttpStatus.OK).send(result.map(toRepresentation));
+        return response
+                    .status(HttpStatus.OK)
+                    .send(result.map(toRepresentation));
     }
 
 }
