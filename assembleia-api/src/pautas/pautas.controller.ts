@@ -18,7 +18,9 @@ export class PautasController {
         const result = await this.service.save(pautaDomain);
 
         if(result.isError()) {
-            return response.status(HttpStatus.CONFLICT).send(new ErrorResponse(result.error.message))
+            return response
+                        .status(HttpStatus.CONFLICT)
+                        .send(new ErrorResponse(result.error.message))
         }
 
         return response.status(HttpStatus.CREATED).send(toRepresentation(result.value));
