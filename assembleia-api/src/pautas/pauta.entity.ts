@@ -19,7 +19,7 @@ export class Pauta {
     fechamento?: Date;
 
     obterStatus(): string {
-        if(this.fechamento && this.fechamento < new Date) {
+        if(this.fechamento && this.fechamento < new Date()) {
             return StatusPauta.ENCERRADA;
         }
         if(this.abertura) {
