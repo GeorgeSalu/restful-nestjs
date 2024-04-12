@@ -36,7 +36,7 @@ export class PautasController {
                     .send(result.map(toRepresentation));
     }
 
-    @Post(':id/sesao')
+    @Post(':id/sessao')
     async criarSessao(@Param('id') id: string, @Body() resource: NovaSessaoResource,
                       @Res() response: Response) {
         const pauta: Pauta = await this.service.findById(id);
