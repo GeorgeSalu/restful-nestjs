@@ -51,8 +51,9 @@ export class PautasController {
         if(sucesso) {
             return response.status(HttpStatus.OK).send();
         }
-
-        return response.status(HttpStatus.CONFLICT).send(new ErrorResponse('ao foi possivel iniciar a sessao para esta pauta'))
+        
+        const errorResponse = new ErrorResponse('não foi possivel iniciar a sessao para esta pauta');
+        return response.status(HttpStatus.CONFLICT).send(errorResponse);
     }
 
 }
