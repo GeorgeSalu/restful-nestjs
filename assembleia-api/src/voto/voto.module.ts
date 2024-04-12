@@ -1,4 +1,7 @@
 import { Module } from '@nestjs/common';
+import { VotoController } from './voto.controller';
 
-@Module({})
+@Module({
+  controllers: [VotoController]
+})
 export class VotoModule {}
