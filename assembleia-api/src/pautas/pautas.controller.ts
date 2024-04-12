@@ -43,7 +43,7 @@ export class PautasController {
         if(!pauta) {
             return response
                         .status(HttpStatus.NOT_FOUND)
-                        .send(new ErrorResponse("pautas nao encontrada"));
+                        .send(new ErrorResponse("pauta nao encontrada"));
         }
 
         const sucesso = await this.service.iniciarASessao(pauta, resource.minutos);
