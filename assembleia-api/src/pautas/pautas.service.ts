@@ -35,7 +35,7 @@ export class PautasService {
     }
 
 
-    async iniciarASessao(pauta: Pauta, minutos: number = PautasService.TEMPO_PADRAO_PAUTA): Promise<boolean> {
+    async iniciarSessao(pauta: Pauta, minutos: number = PautasService.TEMPO_PADRAO_PAUTA): Promise<boolean> {
         if(!pauta.isPossivelIniciarSessao()) {
             return false;
         }
