@@ -18,7 +18,7 @@ export class VotoService {
 
     async registrarVoto(pauta: Pauta,cpf: string,opcaoVoto: OpcaoVoto): Promise<Result<Voto, HttpError>> {
         if(!pauta.isFoiIniciada()) {
-            return new Result(null, new HttpError("pauta nao esta em sessao", HttpStatus.UNPROCESSABLE_ENTITY));
+            return new Result(null, new HttpError("pauta não esta em sessão", HttpStatus.UNPROCESSABLE_ENTITY));
         }
 
         const associado: Associado = await this.associadoService.recuperarOuCadastrar(cpf);
