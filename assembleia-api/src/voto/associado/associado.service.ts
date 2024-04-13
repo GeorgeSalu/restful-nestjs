@@ -6,7 +6,7 @@ import { Associado } from './associado.entity';
 export class AssociadoService {
 
     constructor(
-        @Inject()
+        @Inject('ASSOCIADO_REPOSITORY')
         private readonly associadoRepository: Repository<Associado> 
     ){}
 
