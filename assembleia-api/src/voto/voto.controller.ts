@@ -13,7 +13,7 @@ export class VotoController {
     ){}
 
     @Post()
-    async registarVoto(
+    async registrarVoto(
         @Param('id') idPauta: string,
         @Body() resource: RegistroVotoResource,
         @Res() response: Response
