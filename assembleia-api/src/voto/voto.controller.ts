@@ -24,7 +24,7 @@ export class VotoController {
         if(!pauta) {
             return response
                         .status(HttpStatus.NOT_FOUND)
-                        .send(new ErrorResponse("pautas nao encontrada"))
+                        .send(new ErrorResponse("pauta nao encontrada"))
         }
 
         const result = await this.votoService.registrarVoto(pauta, resource.cpf, resource.opcaoVoto);
