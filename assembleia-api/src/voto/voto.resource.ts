@@ -1,4 +1,4 @@
-import { IsIn, IsNotEmpty, isIn } from "class-validator";
+import { IsIn, IsNotEmpty } from "class-validator";
 import { OpcaoVoto } from "./voto.entity";
 
 export class RegistroVotoResource {
