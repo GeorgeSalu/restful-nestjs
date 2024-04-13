@@ -17,7 +17,7 @@ export class PautasController {
     ){}
 
     @Post()
-    @ApiOperation({description: 'criar uma pauta' })
+    @ApiOperation({ description: 'criar uma pauta' })
     async save(@Body() pauta: CriarPautaResource, @Res() response: Response) {
 
         this.logger.log('criando nova pauta');
