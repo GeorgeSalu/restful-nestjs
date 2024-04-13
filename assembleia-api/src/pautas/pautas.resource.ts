@@ -1,6 +1,10 @@
+import { IsNotEmpty } from "class-validator";
 import { Pauta } from "./pauta.entity";
 
 export class CriarPautaResource {
+    @IsNotEmpty({
+        message: 'descricao é um campo obrigatorio'
+    })
     descricao: string;
 }
 
