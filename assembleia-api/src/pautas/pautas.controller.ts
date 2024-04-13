@@ -4,7 +4,9 @@ import { CriarPautaResource, NovaSessaoResource, toDomain, toRepresentation } fr
 import { Response } from 'express'
 import { Pauta } from './pauta.entity';
 import { ErrorResponse } from 'src/common/erro.resource';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Pautas')
 @Controller('pautas')
 export class PautasController {
 
@@ -15,6 +17,7 @@ export class PautasController {
     ){}
 
     @Post()
+    @ApiOperation({description: 'criar uma pauta' })
     async save(@Body() pauta: CriarPautaResource, @Res() response: Response) {
 
         this.logger.log('criando nova pauta');

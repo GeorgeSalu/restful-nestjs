@@ -11,12 +11,18 @@ export class CriarPautaResource {
 }
 
 export class PautaResource {
+    @ApiProperty()
     id: string;
+
+    @ApiProperty()
     descricao: string;
+
+    @ApiProperty()
     status: string;
 }
 
 export class NovaSessaoResource {
+    @ApiProperty({ default: 10})
     minutos: number;
 }
 
