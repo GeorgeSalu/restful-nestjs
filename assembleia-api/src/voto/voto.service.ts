@@ -1,10 +1,11 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { OpcaoVoto, Voto } from './voto.entity';
 import { AssociadoService } from './associado/associado.service';
 import { Pauta } from 'src/pautas/pauta.entity';
 import { Result } from 'src/common/result';
 import { Associado } from './associado/associado.entity';
+import { HttpError } from 'src/common/httpError';
 
 @Injectable()
 export class VotoService {
@@ -15,9 +16,9 @@ export class VotoService {
         private readonly associadoService: AssociadoService
     ){}
 
-    async registrarVoto(pauta: Pauta,cpf: string,opcaoVoto: OpcaoVoto): Promise<Result<Voto>> {
+    async registrarVoto(pauta: Pauta,cpf: string,opcaoVoto: OpcaoVoto): Promise<Result<Voto, HttpError>> {
         if(!pauta.isFoiIniciada()) {
-            return new Result(null, new Error("pauta nao esta em sessao"));
+            return new Result(null, new HttpError("pauta nao esta em sessao", HttpStatus.UNPROCESSABLE_ENTITY));
         }
 
         const associado: Associado = await this.associadoService.recuperarOuCadastrar(cpf);
@@ -25,7 +26,7 @@ export class VotoService {
         const votoJaRegistrado: boolean = await this.existeVotoPara(pauta, associado);
 
         if(votoJaRegistrado) {
-            return new Result(null, new Error("voto ja registrado anteriormente"));
+            return new Result(null, new HttpError("voto ja registrado anteriormente", HttpStatus.CONFLICT));
         }
 
         const voto = new Voto();

@@ -29,6 +29,11 @@ export class VotoController {
 
         const result = await this.votoService.registrarVoto(pauta, resource.cpf, resource.opcaoVoto);
 
+        if(result.isError()) {
+            const error = result.error;
+            return response.status(error.status).send(new ErrorResponse(error.message))
+        }
+
         return response.status(HttpStatus.ACCEPTED).send();
     }
 
