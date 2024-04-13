@@ -71,7 +71,7 @@ export class VotoService {
         return sim > nao ? OpcaoVoto.SIM : OpcaoVoto.NAO;
     } 
 
-    async obterResultdo(pauta: Pauta): Promise<Result<ResultadoVotacaoResource, HttpError>> {
+    async obterResultado(pauta: Pauta): Promise<Result<ResultadoVotacaoResource, HttpError>> {
         if(!pauta.isFoiEncerrada()) {
             return new Result(null, new HttpError("resultado ainda nao disponivel", HttpStatus.NOT_FOUND));
         }

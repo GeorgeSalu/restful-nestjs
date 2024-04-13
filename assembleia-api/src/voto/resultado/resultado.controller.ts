@@ -23,7 +23,7 @@ export class ResultadoController {
                         .send(new ErrorResponse("pauta nao encontrada"));
         }
 
-        const result = await this.votoService.obterResultdo(pauta);
+        const result = await this.votoService.obterResultado(pauta);
 
         if(result.isError()) {
             return response.status(result.error.status).send(new ErrorResponse(result.error.message));
