@@ -18,7 +18,7 @@ export class AssociadoService {
         })
     }
 
-    async recurperarCadastrar(cpf: string): Promise<Associado> {
+    async recuperarOuCadastrar(cpf: string): Promise<Associado> {
         const associadoEncontrado: Associado = await this.obterPorCpf(cpf);
         if(associadoEncontrado) {
             return associadoEncontrado;
