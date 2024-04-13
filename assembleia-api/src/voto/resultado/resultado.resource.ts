@@ -1,6 +1,6 @@
 import { OpcaoVoto } from "../voto.entity";
 
-export class ResultadoVotacao {
+export class ResultadoVotacaoResource {
     pauta: string;
     abertura: Date;
     encerramento: Date;
