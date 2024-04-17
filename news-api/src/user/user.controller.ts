@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Post } from "@nestjs/common";
+import { BadRequestException, Body, Controller, Get, NotFoundException, Param, Post } from "@nestjs/common";
 import { CreateUserDto } from "./dtos/createuser.dto";
 import { Users } from "@prisma/client";
 import { UserService } from "./user.service";
@@ -20,6 +20,15 @@ export class UserController {
 
         const newUser = await this.userService.create(createUser);
         return newUser;
+    }
+
+    @Get('/:id')
+    public async show(@Param('id') id: string): Promise<Users> {
+        const user = await this.userService.findById(id);
+        if (!user) {
+            throw new NotFoundException('user not found');
+        }
+        return user;
     }
 
 
