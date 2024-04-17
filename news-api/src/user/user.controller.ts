@@ -1,5 +1,5 @@
 import { BadRequestException, Body, Controller, Post } from "@nestjs/common";
-import { CreateuserDto } from "./dtos/createuser.dto";
+import { CreateUserDto } from "./dtos/createuser.dto";
 import { Users } from "@prisma/client";
 import { UserService } from "./user.service";
 
@@ -11,7 +11,7 @@ export class UserController {
     ) { }
 
     @Post()
-    public async store(@Body() createUser: CreateuserDto): Promise<Users> {
+    public async store(@Body() createUser: CreateUserDto): Promise<Users> {
         const userByEmail = await this.userService.findByEmail(createUser?.email);
 
         if (userByEmail) {
