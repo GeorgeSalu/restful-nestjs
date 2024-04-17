@@ -13,13 +13,23 @@ export class UserService {
     public async create(data: Prisma.UsersCreateInput): Promise<Users> {
         const saltOrRounds = 10;
         const passwordHashed = await hash(data?.password, saltOrRounds);
-        const userData: Prisma.UsersCreateInput = { ...data, password: passwordHashed };
+        const userData: Prisma.UsersCreateInput = {
+            ...data,
+            password: passwordHashed
+        };
 
         const newUser = await this.prismaService.users.create({
-            data: userData,
-            select: { news: false, created_at: false, update_at: false }
+            data: userData
         })
-        return newUser as Users;
+        return newUser;
+    }
+
+    public async findByEmail(email: string): Promise<Users | null> {
+        const user = await this.prismaService.users.findFirst({
+            where: { email }
+        });
+
+        return user;
     }
 
 }
