@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Get, NotFoundException, Param, Post } from "@nestjs/common";
+import { BadRequestException, Body, Controller, Get, NotFoundException, Param, Post, UsePipes, ValidationPipe } from "@nestjs/common";
 import { CreateUserDto } from "./dtos/createuser.dto";
 import { Users } from "@prisma/client";
 import { UserService } from "./user.service";
@@ -10,6 +10,7 @@ export class UserController {
         private userService: UserService
     ) { }
 
+    @UsePipes(ValidationPipe)
     @Post()
     public async store(@Body() createUser: CreateUserDto): Promise<Users> {
         if (!createUser?.name || !createUser?.email || !createUser?.password) {
