@@ -44,7 +44,7 @@ export class UserController {
         @Param('id') id: string
     ): Promise<Users> {
         if (!userData?.name || !userData?.email) {
-            throw new BadRequestException('name e email is required');
+            throw new BadRequestException('name and email is required');
         }
 
         const userById = await this.userService.findById(id);
