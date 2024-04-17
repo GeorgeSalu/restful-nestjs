@@ -12,6 +12,10 @@ export class UserController {
 
     @Post()
     public async store(@Body() createUser: CreateUserDto): Promise<Users> {
+        if (!createUser?.name || !createUser?.email || !createUser?.password) {
+            throw new BadRequestException('name, email and passaword is required')
+        }
+
         const userByEmail = await this.userService.findByEmail(createUser?.email);
 
         if (userByEmail) {
