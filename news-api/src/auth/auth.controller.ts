@@ -16,13 +16,13 @@ export class AuthController {
     public async login(
         @Body() loginData: LoginDto
     ): Promise<{ accessToken: string }> {
-        const finduserByEmail = await this.userService.findByEmail(loginData?.email);
+        const findUserByEmail = await this.userService.findByEmail(loginData?.email);
 
-        if (!finduserByEmail) {
+        if (!findUserByEmail) {
             throw new NotFoundException('user not found')
         }
 
-        return await this.authService.login(loginData, finduserByEmail);
+        return await this.authService.login(loginData, findUserByEmail);
     }
 
 }
