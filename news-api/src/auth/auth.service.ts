@@ -17,9 +17,9 @@ export class AuthService {
         userData: Users
     ): Promise<{ accessToken: string }> {
 
-        const { pasword } = loginDto;
+        const { password } = loginDto;
 
-        const isMatch = await compare(pasword, userData?.password || '')
+        const isMatch = await compare(password, userData?.password || '')
 
         if (isMatch) {
             throw new NotFoundException('emal or password invalid')
