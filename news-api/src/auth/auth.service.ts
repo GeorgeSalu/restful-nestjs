@@ -21,7 +21,7 @@ export class AuthService {
 
         const isMatch = await compare(password, userData?.password || '')
 
-        if (isMatch) {
+        if (!isMatch) {
             throw new NotFoundException('emal or password invalid')
         }
 
