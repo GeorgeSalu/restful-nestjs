@@ -35,4 +35,17 @@ export class CategoriesService {
         return categoris;
     }
 
+    public async update(params: {
+        id: string;
+        data: Prisma.CategoriesUpdateInput
+    }): Promise<Categories> {
+        const { id, data } = params;
+        const updateCategory = await this.prismaService.categories.update({
+            where: { id },
+            data
+        })
+
+        return updateCategory;
+    }
+
 }

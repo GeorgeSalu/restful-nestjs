@@ -1,7 +1,7 @@
-import { BadRequestException, Body, Controller, Get, NotFoundException, Param, Post, UsePipes, ValidationPipe } from "@nestjs/common";
+import { BadRequestException, Body, Controller, Get, NotFoundException, Param, Post, Put, UsePipes, ValidationPipe } from "@nestjs/common";
 import { CategoriesService } from "./categories.service";
 import { CreateCategoryDto } from "./dtos/createCategory.dto";
-import { Categories } from "@prisma/client";
+import { Categories, Prisma } from "@prisma/client";
 
 @Controller('categories')
 export class CategoriesController {
@@ -27,6 +27,40 @@ export class CategoriesController {
         return newCategory;
     }
 
+    @UsePipes(ValidationPipe)
+    @Put('/:id')
+    public async update(
+        @Body() categoryDatas: CreateCategoryDto,
+        @Param('id') id: string
+    ): Promise<Categories> {
+        if (!categoryDatas?.name) {
+            throw new BadRequestException('name is required')
+        }
+
+        const categoryById = await this.categoriesService.findById(id);
+
+        if (!categoryById) {
+            throw new NotFoundException('category not found')
+        }
+
+        if (categoryDatas?.name !== categoryById.name) {
+            const categoryByName = await this.categoriesService.findByName(categoryDatas.name)
+
+            if (categoryByName !== null) {
+                throw new BadRequestException('this name is not available')
+            }
+        } else {
+            throw new BadRequestException('the name entered is the same as te current one')
+        }
+
+        const categoryUpdate = await this.categoriesService.update({
+            id,
+            data: categoryDatas
+        })
+
+        return categoryUpdate;
+    }
+
     @Get()
     public async index(): Promise<Categories[]> {
         const categories = await this.categoriesService.findAll();
@@ -45,6 +79,7 @@ export class CategoriesController {
 
         return category;
     }
+
 
 
 }
