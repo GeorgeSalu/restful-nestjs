@@ -83,7 +83,13 @@ export class CategoriesController {
     @Delete('/:id')
     @HttpCode(204)
     public async delete(@Param('id') id: string): Promise<void> {
+        const categoryById = await this.categoriesService.findById(id);
 
+        if (!categoryById) {
+            throw new NotFoundException('category not found');
+        }
+
+        await this.categoriesService.delete(id);
     }
 
 }
