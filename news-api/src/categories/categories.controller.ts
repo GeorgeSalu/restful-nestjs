@@ -12,18 +12,18 @@ export class CategoriesController {
 
     @UsePipes(ValidationPipe)
     @Post()
-    public async store(@Body() createCategori: CreateCategoryDto): Promise<Categories> {
-        if (!createCategori?.name) {
+    public async store(@Body() createCategory: CreateCategoryDto): Promise<Categories> {
+        if (!createCategory?.name) {
             throw new BadRequestException('name is required');
         }
 
-        const findCategoryByName = await this.categoriesService.findByName(createCategori.name);
+        const findCategoryByName = await this.categoriesService.findByName(createCategory.name);
 
         if (findCategoryByName) {
             throw new BadRequestException('this category name is not available')
         }
 
-        const newCategory = await this.categoriesService.create(createCategori);
+        const newCategory = await this.categoriesService.create(createCategory);
         return newCategory;
     }
 
