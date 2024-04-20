@@ -10,10 +10,10 @@ export class CategoriesService {
     ) { }
 
     public async create(data: Prisma.CategoriesCreateInput): Promise<Categories> {
-        const newCategories = await this.prismaService.categories.create({
+        const newCategory = await this.prismaService.categories.create({
             data
         });
-        return newCategories;
+        return newCategory;
     }
 
 }
