@@ -23,4 +23,10 @@ export class CategoriesService {
         return category;
     }
 
+    public async findAll(): Promise<Categories[]> {
+        const categories = this.prismaService.categories.findMany();
+        return categories
+    }
+
+
 }

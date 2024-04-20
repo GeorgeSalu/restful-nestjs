@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Post, UsePipes, ValidationPipe } from "@nestjs/common";
+import { BadRequestException, Body, Controller, Get, Post, UsePipes, ValidationPipe } from "@nestjs/common";
 import { CategoriesService } from "./categories.service";
 import { CreateCategoryDto } from "./dtos/createCategory.dto";
 import { Categories } from "@prisma/client";
@@ -26,5 +26,12 @@ export class CategoriesController {
         const newCategory = await this.categoriesService.create(createCategory);
         return newCategory;
     }
+
+    @Get()
+    public async index(): Promise<Categories[]> {
+        const categories = await this.categoriesService.findAll();
+        return categories;
+    }
+
 
 }
