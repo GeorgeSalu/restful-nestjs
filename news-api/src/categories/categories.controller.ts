@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Get, NotFoundException, Param, Post, Put, UsePipes, ValidationPipe } from "@nestjs/common";
+import { BadRequestException, Body, Controller, Delete, Get, HttpCode, NotFoundException, Param, Post, Put, UsePipes, ValidationPipe } from "@nestjs/common";
 import { CategoriesService } from "./categories.service";
 import { CreateCategoryDto } from "./dtos/createCategory.dto";
 import { Categories } from "@prisma/client";
@@ -80,6 +80,10 @@ export class CategoriesController {
         return category;
     }
 
+    @Delete('/:id')
+    @HttpCode(204)
+    public async delete(@Param('id') id: string): Promise<void> {
 
+    }
 
 }
