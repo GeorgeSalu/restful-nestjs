@@ -21,7 +21,7 @@ export class CategoriesController {
         const findCategoryByName = await this.categoriesService.findByName(createCategori.name);
 
         if (findCategoryByName) {
-            throw new BadGatewayException('this category name is not available')
+            throw new BadRequestException('this category name is not available')
         }
 
         const newCategory = await this.categoriesService.create(createCategori);
