@@ -1,6 +1,8 @@
-import { Controller, Post, UsePipes, ValidationPipe } from "@nestjs/common";
+import { BadGatewayException, BadRequestException, Body, Controller, Post, UsePipes, ValidationPipe } from "@nestjs/common";
 import { CategoriesService } from "./categories.service";
 import { posix } from "path";
+import { CreateCategoryDto } from "./dtos/createCategory.dto";
+import { Categories } from "@prisma/client";
 
 @Controller('categories')
 export class CategoriesController {
@@ -11,6 +13,19 @@ export class CategoriesController {
 
     @UsePipes(ValidationPipe)
     @Post()
-    public async store() { }
+    public async store(@Body() createCategori: CreateCategoryDto): Promise<Categories> {
+        if (!createCategori?.name) {
+            throw new BadRequestException('name is required');
+        }
+
+        const findCategoryByName = await this.categoriesService.findByName(createCategori.name);
+
+        if (findCategoryByName) {
+            throw new BadGatewayException('this category name is not available')
+        }
+
+        const newCategory = await this.categoriesService.create(createCategori);
+        return newCategory;
+    }
 
 }
