@@ -28,5 +28,11 @@ export class CategoriesService {
         return categories
     }
 
+    public async findById(id: string): Promise<Categories | null> {
+        const categoris = await this.prismaService.categories.findFirst({
+            where: { id }
+        });
+        return categoris;
+    }
 
 }
