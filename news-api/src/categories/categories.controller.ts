@@ -1,6 +1,5 @@
-import { BadGatewayException, BadRequestException, Body, Controller, Post, UsePipes, ValidationPipe } from "@nestjs/common";
+import { BadRequestException, Body, Controller, Post, UsePipes, ValidationPipe } from "@nestjs/common";
 import { CategoriesService } from "./categories.service";
-import { posix } from "path";
 import { CreateCategoryDto } from "./dtos/createCategory.dto";
 import { Categories } from "@prisma/client";
 
