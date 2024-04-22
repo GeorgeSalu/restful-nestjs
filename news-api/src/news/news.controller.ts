@@ -1,4 +1,4 @@
-import { Body, Controller, NotFoundException, Post, UsePipes, ValidationPipe } from "@nestjs/common";
+import { Body, Controller, Get, NotFoundException, Post, UsePipes, ValidationPipe } from "@nestjs/common";
 import { CreateNewDto } from "./dtos/CreateNews.dto";
 import { News } from "@prisma/client";
 import { UserService } from "src/user/user.service";
@@ -32,6 +32,13 @@ export class NewsController {
 
         const news = await this.newsService.create(createNews);
         return news;
+    }
+
+
+    @Get()
+    public async index(): Promise<News[]> {
+        const newsList = this.newsService.findAll();
+        return newsList;
     }
 
 }

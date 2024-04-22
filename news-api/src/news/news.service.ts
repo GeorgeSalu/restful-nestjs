@@ -16,4 +16,10 @@ export class NewsService {
         return news;
     }
 
+    public async findAll(): Promise<News[]> {
+        const newsList = await this.prismaService.news.findMany();
+        return newsList;
+    }
+
+
 }
