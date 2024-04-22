@@ -21,5 +21,12 @@ export class NewsService {
         return newsList;
     }
 
+    public async findById(id: string): Promise<News | null> {
+        const findNewById = await this.prismaService.news.findFirst({
+            where: { id }
+        })
+
+        return findNewById;
+    }
 
 }
