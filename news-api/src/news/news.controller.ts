@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Get, NotFoundException, Param, Post, Put, UsePipes, ValidationPipe } from "@nestjs/common";
+import { BadRequestException, Body, Controller, Delete, Get, HttpCode, NotFoundException, Param, Post, Put, UsePipes, ValidationPipe } from "@nestjs/common";
 import { CreateNewDto } from "./dtos/CreateNews.dto";
 import { News } from "@prisma/client";
 import { UserService } from "src/user/user.service";
@@ -80,6 +80,18 @@ export class NewsController {
         });
 
         return updatedNew;
+    }
+
+    @Delete('/:id')
+    @HttpCode(204)
+    public async delete(@Param('id') id: string): Promise<void> {
+        const findNewById = await this.newsService.findById(id);
+
+        if (!findNewById) {
+            throw new NotFoundException('new not found');
+        }
+
+        await this.newsService.delete(id);
     }
 
 
