@@ -62,10 +62,10 @@ export class NewsController {
         if (!newsData) {
             throw new BadRequestException('news data is required');
         }
-        const findNewById = await this.newsService.findById(id);
+        const findNewsById = await this.newsService.findById(id);
 
-        if (!findNewById) {
-            throw new NotFoundException('new not found')
+        if (!findNewsById) {
+            throw new NotFoundException('news not found')
         }
 
         const categoryExists = await this.categoriesService.findById(newsData?.category_id);
