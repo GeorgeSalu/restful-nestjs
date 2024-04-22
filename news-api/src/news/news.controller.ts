@@ -85,10 +85,10 @@ export class NewsController {
     @Delete('/:id')
     @HttpCode(204)
     public async delete(@Param('id') id: string): Promise<void> {
-        const findNewById = await this.newsService.findById(id);
+        const findNewsById = await this.newsService.findById(id);
 
-        if (!findNewById) {
-            throw new NotFoundException('new not found');
+        if (!findNewsById) {
+            throw new NotFoundException('news not found');
         }
 
         await this.newsService.delete(id);
