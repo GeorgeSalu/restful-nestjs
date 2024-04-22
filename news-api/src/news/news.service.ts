@@ -3,7 +3,7 @@ import { News, Prisma } from "@prisma/client";
 import { PrismaService } from "src/prisma/prisma.service";
 
 @Injectable()
-export class newService {
+export class NewsService {
 
     constructor(
         private prismaService: PrismaService

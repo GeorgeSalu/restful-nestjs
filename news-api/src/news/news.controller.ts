@@ -2,7 +2,7 @@ import { Body, Controller, NotFoundException, Post, UsePipes, ValidationPipe } f
 import { CreateNewDto } from "./dtos/CreateNews.dto";
 import { News } from "@prisma/client";
 import { UserService } from "src/user/user.service";
-import { newService } from "./news.service";
+import { NewsService } from "./news.service";
 import { CategoriesService } from "src/categories/categories.service";
 
 @Controller('news')
@@ -10,7 +10,7 @@ export class NewsController {
 
     constructor(
         private userService: UserService,
-        private newsService: newService,
+        private newsService: NewsService,
         private categoriesService: CategoriesService
     ) { }
 
