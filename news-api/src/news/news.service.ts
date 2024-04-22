@@ -29,4 +29,11 @@ export class NewsService {
         return findNewById;
     }
 
+    public async findByCategory(category_id: string): Promise<News | null> {
+        const findNewByCategory = await this.prismaService.news.findFirst({
+            where: { category_id }
+        })
+        return findNewByCategory;
+    }
+
 }

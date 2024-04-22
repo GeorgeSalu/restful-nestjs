@@ -2,12 +2,14 @@ import { BadRequestException, Body, Controller, Delete, Get, HttpCode, NotFoundE
 import { CategoriesService } from "./categories.service";
 import { CreateCategoryDto } from "./dtos/createCategory.dto";
 import { Categories } from "@prisma/client";
+import { NewsService } from "src/news/news.service";
 
 @Controller('categories')
 export class CategoriesController {
 
     constructor(
-        private categoriesService: CategoriesService
+        private categoriesService: CategoriesService,
+        private newsService: NewsService
     ) { }
 
     @UsePipes(ValidationPipe)
@@ -87,6 +89,12 @@ export class CategoriesController {
 
         if (!categoryById) {
             throw new NotFoundException('category not found');
+        }
+
+        const findCategoryInNews = await this.newsService.findByCategory(id);
+
+        if (findCategoryInNews) {
+            throw new BadRequestException('cannot remove category in use')
         }
 
         await this.categoriesService.delete(id);
