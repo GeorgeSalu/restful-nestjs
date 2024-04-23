@@ -40,7 +40,7 @@ describe(`${UserService.name}`, () => {
         expect(prismaService.users.create).toHaveBeenCalledTimes(1);
     })
 
-    it('should return a single user', async () => {
+    it(`${UserService.prototype.findByEmail.name} should return a single user`, async () => {
         const response = await service.findByEmail(userMock[0].email);
 
         expect(response).toEqual(userMock[0]);
@@ -50,7 +50,7 @@ describe(`${UserService.name}`, () => {
         })
     })
 
-    it('should return null when user is not found', async () => {
+    it(`${UserService.prototype.findByEmail.name} should return null when user is not found`, async () => {
         jest.spyOn(prismaService.users, 'findFirst').mockResolvedValueOnce(null);
         const fakeEmail = 'mock@mock.fail'
         const response = await service.findByEmail(fakeEmail);
