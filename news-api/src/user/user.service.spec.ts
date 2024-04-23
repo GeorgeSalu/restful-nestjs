@@ -2,7 +2,6 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { PrismaService } from "../prisma/prisma.service";
 import { UserService } from "./user.service";
 import { prismaUserMock, userMock } from "./mocks/user.mock";
-import exp from "constants";
 
 describe(`${UserService.name}`, () => {
 
