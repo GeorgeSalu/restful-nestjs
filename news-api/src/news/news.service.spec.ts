@@ -1,14 +1,14 @@
-import { Test } from "@nestjs/testing";
+import { Test, TestingModule } from "@nestjs/testing";
 import { PrismaService } from "../prisma/prisma.service";
 import { NewsService } from "./news.service"
 import { prismaNewsMock } from "./mocks/news.mock";
 
-describe('', () => {
+describe(`${NewsService.name}`, () => {
     let service: NewsService;
     let prismaService: PrismaService
 
     beforeEach(async () => {
-        const module = await Test.createTestingModule({
+        const module: TestingModule = await Test.createTestingModule({
             providers: [
                 NewsService,
                 { provide: PrismaService, useValue: prismaNewsMock }
