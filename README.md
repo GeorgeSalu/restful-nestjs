@@ -6,4 +6,4 @@
  - Docker
  - Typescript
  - NestJs
- - jest
+ - Jest
