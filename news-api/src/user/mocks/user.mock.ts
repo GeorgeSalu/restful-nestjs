@@ -19,7 +19,7 @@ export const userMock: Users[] = [
     }
 ];
 
-export const prismaUSerMock = {
+export const prismaUserMock = {
     users: {
         create: jest.fn().mockReturnValue(userMock[0]),
         findMany: jest.fn().mockReturnValue(userMock),

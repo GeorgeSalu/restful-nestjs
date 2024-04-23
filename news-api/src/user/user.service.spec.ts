@@ -1,7 +1,7 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { PrismaService } from "../prisma/prisma.service";
 import { UserService } from "./user.service";
-import { prismaUSerMock, userMock } from "./mocks/user.mock";
+import { prismaUserMock, userMock } from "./mocks/user.mock";
 
 describe(`${UserService.name}`, () => {
 
@@ -14,7 +14,7 @@ describe(`${UserService.name}`, () => {
             providers: [
                 UserService,
                 {
-                    provide: PrismaService, useValue: prismaUSerMock
+                    provide: PrismaService, useValue: prismaUserMock
                 }
             ],
 
