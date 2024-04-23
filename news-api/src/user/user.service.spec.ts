@@ -33,14 +33,14 @@ describe(`${UserService.name}`, () => {
         expect(service).toBeDefined();
     })
 
-    it(`${UserService.prototype.create.name} should create a new user`, async () => {
+    it(`${UserService.prototype.create.name}() should create a new user`, async () => {
         const response = await service.create(userMock[0]);
 
         expect(response).toEqual(userMock[0]);
         expect(prismaService.users.create).toHaveBeenCalledTimes(1);
     })
 
-    it(`${UserService.prototype.findByEmail.name} should return a single user`, async () => {
+    it(`${UserService.prototype.findByEmail.name}() should return a single user`, async () => {
         const response = await service.findByEmail(userMock[0].email);
 
         expect(response).toEqual(userMock[0]);
@@ -50,7 +50,7 @@ describe(`${UserService.name}`, () => {
         })
     })
 
-    it(`${UserService.prototype.findByEmail.name} should return null when user is not found`, async () => {
+    it(`${UserService.prototype.findByEmail.name}() should return null when user is not found`, async () => {
         jest.spyOn(prismaService.users, 'findFirst').mockResolvedValueOnce(null);
         const fakeEmail = 'mock@mock.fail'
         const response = await service.findByEmail(fakeEmail);
@@ -62,7 +62,7 @@ describe(`${UserService.name}`, () => {
         })
     })
 
-    it(`${UserService.prototype.findById.name} should return a single user`, async () => {
+    it(`${UserService.prototype.findById.name}() should return a single user`, async () => {
         const response = await service.findById(userMock[0].id);
 
         expect(response).toEqual(userMock[0]);
@@ -72,7 +72,7 @@ describe(`${UserService.name}`, () => {
         })
     })
 
-    it(`${UserService.prototype.findById.name} should return null when user is not found`, async () => {
+    it(`${UserService.prototype.findById.name}() should return null when user is not found`, async () => {
         jest.spyOn(prismaService.users, 'findFirst').mockResolvedValueOnce(null);
         const fakeId = '123456';
         const response = await service.findById(fakeId);
@@ -84,7 +84,7 @@ describe(`${UserService.name}`, () => {
         })
     })
 
-    it(`${UserService.prototype.update.name} should update user`, async () => {
+    it(`${UserService.prototype.update.name}() should update user`, async () => {
         jest.spyOn(prismaService.users, 'update').mockResolvedValueOnce(userMock[1]);
         const response = await service.update({
             id: userMock[0].id,
@@ -99,7 +99,7 @@ describe(`${UserService.name}`, () => {
         })
     })
 
-    it(`${UserService.prototype.update.name} should return null when user is not found`, async () => {
+    it(`${UserService.prototype.update.name}() should return null when user is not found`, async () => {
         jest.spyOn(prismaService.users, 'update').mockResolvedValueOnce(null);
         const fakeId = '89632'
         const response = await service.update({
