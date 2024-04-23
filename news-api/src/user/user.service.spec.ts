@@ -29,11 +29,11 @@ describe(`${UserService.name}`, () => {
         jest.clearAllMocks();
     })
 
-    it('should be defined', () => {
+    it(`${UserService.name} should be defined`, () => {
         expect(service).toBeDefined();
     })
 
-    it('should create a new user', async () => {
+    it(`${UserService.prototype.create.name} should create a new user`, async () => {
         const response = await service.create(userMock[0]);
 
         expect(response).toEqual(userMock[0]);
