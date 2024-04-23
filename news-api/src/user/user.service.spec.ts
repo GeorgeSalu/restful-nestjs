@@ -99,4 +99,20 @@ describe(`${UserService.name}`, () => {
         })
     })
 
+    it(`${UserService.prototype.update.name} should return null when user is not found`, async () => {
+        jest.spyOn(prismaService.users, 'update').mockResolvedValueOnce(null);
+        const fakeId = '89632'
+        const response = await service.update({
+            id: fakeId,
+            data: userMock[0]
+        })
+
+        expect(response).toBeNull()
+        expect(prismaService.users.update).toHaveBeenCalledTimes(1);
+        expect(prismaService.users.update).toHaveBeenLastCalledWith({
+            where: { id: fakeId },
+            data: { name: userMock[0].name, email: userMock[0].email }
+        })
+    })
+
 })
