@@ -1,5 +1,4 @@
 import { Users } from "@prisma/client";
-import { create } from "domain";
 
 export const userMock: Users[] = [
     {
