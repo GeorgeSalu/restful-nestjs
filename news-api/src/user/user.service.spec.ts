@@ -2,6 +2,7 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { PrismaService } from "../prisma/prisma.service";
 import { UserService } from "./user.service";
 import { prismaUserMock, userMock } from "./mocks/user.mock";
+import exp from "constants";
 
 describe(`${UserService.name}`, () => {
 
@@ -37,6 +38,28 @@ describe(`${UserService.name}`, () => {
 
         expect(response).toEqual(userMock[0]);
         expect(prismaService.users.create).toHaveBeenCalledTimes(1);
+    })
+
+    it('should return a single user', async () => {
+        const response = await service.findByEmail(userMock[0].email);
+
+        expect(response).toEqual(userMock[0]);
+        expect(prismaService.users.findFirst).toHaveBeenCalledTimes(1);
+        expect(prismaService.users.findFirst).toHaveBeenCalledWith({
+            where: { email: userMock[0].email },
+        })
+    })
+
+    it('should return null when user is not found', async () => {
+        jest.spyOn(prismaService.users, 'findFirst').mockResolvedValueOnce(null);
+        const fakeEmail = 'mock@mock.fail'
+        const response = await service.findByEmail(fakeEmail);
+
+        expect(response).toEqual(null);
+        expect(prismaService.users.findFirst).toHaveBeenCalledTimes(1);
+        expect(prismaService.users.findFirst).toHaveBeenLastCalledWith({
+            where: { email: fakeEmail }
+        })
     })
 
 })
