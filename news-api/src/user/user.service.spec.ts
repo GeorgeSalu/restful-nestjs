@@ -62,4 +62,41 @@ describe(`${UserService.name}`, () => {
         })
     })
 
+    it(`${UserService.prototype.findById.name} should return a single user`, async () => {
+        const response = await service.findById(userMock[0].id);
+
+        expect(response).toEqual(userMock[0]);
+        expect(prismaService.users.findFirst).toHaveBeenCalledTimes(1);
+        expect(prismaService.users.findFirst).toHaveBeenLastCalledWith({
+            where: { id: userMock[0].id }
+        })
+    })
+
+    it(`${UserService.prototype.findById.name} should return null when user is not found`, async () => {
+        jest.spyOn(prismaService.users, 'findFirst').mockResolvedValueOnce(null);
+        const fakeId = '123456';
+        const response = await service.findById(fakeId);
+
+        expect(response).toBeNull()
+        expect(prismaService.users.findFirst).toHaveBeenCalledTimes(1);
+        expect(prismaService.users.findFirst).toHaveBeenLastCalledWith({
+            where: { id: fakeId }
+        })
+    })
+
+    it(`${UserService.prototype.update.name} should update user`, async () => {
+        jest.spyOn(prismaService.users, 'update').mockResolvedValueOnce(userMock[1]);
+        const response = await service.update({
+            id: userMock[0].id,
+            data: userMock[1]
+        })
+
+        expect(response.name).toEqual(userMock[1].name);
+        expect(prismaService.users.update).toHaveBeenCalledTimes(1);
+        expect(prismaService.users.update).toHaveBeenLastCalledWith({
+            where: { id: userMock[0].id },
+            data: { name: userMock[1].name, email: userMock[1].email }
+        })
+    })
+
 })
