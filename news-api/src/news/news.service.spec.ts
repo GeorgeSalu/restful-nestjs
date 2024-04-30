@@ -37,7 +37,7 @@ describe(`${NewsService.name}`, () => {
         expect(prismaService.news.findMany).toHaveBeenCalledTimes(1);
     })
 
-    it(`${NewsService.prototype.findById.name}() should return a single new`, async () => {
+    it(`${NewsService.prototype.findById.name}() should return a single news`, async () => {
         const response = await service.findById(newsMock[0].id);
 
         expect(response).toEqual(newsMock[0]);
