@@ -25,10 +25,10 @@ export const newsMock: News[] = [
 
 export const prismaNewsMock = {
     news: {
-        create: jest.fn().mockReturnValueOnce(newsMock[0]),
-        findMany: jest.fn().mockReturnValueOnce(newsMock),
-        findFirst: jest.fn().mockReturnValueOnce(newsMock[0]),
-        update: jest.fn().mockReturnValueOnce(newsMock[0]),
+        create: jest.fn().mockReturnValue(newsMock[0]),
+        findMany: jest.fn().mockReturnValue(newsMock),
+        findFirst: jest.fn().mockReturnValue(newsMock[0]),
+        update: jest.fn().mockReturnValue(newsMock[0]),
         delete: jest.fn()
     }
 }

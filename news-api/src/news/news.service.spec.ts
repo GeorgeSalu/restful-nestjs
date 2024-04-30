@@ -44,4 +44,34 @@ describe(`${NewsService.name}`, () => {
         expect(prismaService.news.findFirst).toHaveBeenCalledTimes(1);
     })
 
+    it(`${NewsService.prototype.findById.name}() should return null when new is not found`, async () => {
+        jest.spyOn(prismaService.news, 'findFirst').mockResolvedValueOnce(null);
+        const response = await service.findById('12322121');
+
+        expect(response).toBeNull();
+        expect(prismaService.news.findFirst).toHaveBeenCalledTimes(1);
+    })
+
+    it(`${NewsService.prototype.findByCategory.name}() should return a single new`, async () => {
+
+        const response = await service.findByCategory(newsMock[0].category_id);
+
+        expect(response).toEqual(newsMock[0])
+        expect(prismaService.news.findFirst).toHaveBeenCalledTimes(1);
+        expect(prismaService.news.findFirst).toHaveBeenCalledWith({
+            where: { category_id: newsMock[0].category_id }
+        })
+    })
+
+    it(`${NewsService.prototype.findByCategory.name}() should return a single new`, async () => {
+        jest.spyOn(prismaService.news, 'findFirst').mockResolvedValueOnce(null)
+        const response = await service.findByCategory('12121');
+
+        expect(response).toBeNull()
+        expect(prismaService.news.findFirst).toHaveBeenCalledTimes(1);
+        expect(prismaService.news.findFirst).toHaveBeenCalledWith({
+            where: { category_id: '12121' }
+        })
+    })
+
 })
