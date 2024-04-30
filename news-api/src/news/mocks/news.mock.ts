@@ -1,5 +1,4 @@
 import { News } from "@prisma/client";
-import { create } from "domain";
 
 export const newsMock: News[] = [
     {
