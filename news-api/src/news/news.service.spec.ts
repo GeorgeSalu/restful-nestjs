@@ -74,4 +74,48 @@ describe(`${NewsService.name}`, () => {
         })
     })
 
+    it(`${NewsService.prototype.update.name}() should update news`, async () => {
+        const { title, content, category_id } = newsMock[1];
+        jest.spyOn(prismaService.news, 'update').mockResolvedValueOnce(newsMock[1])
+        const response = await service.update({
+            id: newsMock[0].id,
+            newsData: newsMock[1],
+        })
+
+        expect(response.title).toEqual(newsMock[1].title);
+        expect(prismaService.news.update).toHaveBeenCalledTimes(1);
+        expect(prismaService.news.update).toHaveBeenCalledWith({
+            where: { id: newsMock[0].id },
+            data: { title, content, category_id }
+        })
+    })
+
+    it(`${NewsService.prototype.update.name}() should return null when news is not found`, async () => {
+        const { title, content, category_id } = newsMock[0];
+        jest.spyOn(prismaService.news, 'update').mockResolvedValueOnce(null);
+        const response = await service.update({
+            id: '123456',
+            newsData: newsMock[0],
+        })
+
+        expect(response).toBeNull();
+        expect(prismaService.news.update).toHaveBeenCalledTimes(1);
+        expect(prismaService.news.update).toHaveBeenCalledWith({
+            where: { id: '123456' },
+            data: { title, content, category_id }
+        })
+    })
+
+    it(`${NewsService.prototype.update.name}() should delete new`, async () => {
+
+        jest.spyOn(prismaService.news, 'delete').mockResolvedValueOnce(null);
+        const response = await service.delete(newsMock[0].id);
+
+        expect(response).toBeNull();
+        expect(prismaService.news.delete).toHaveBeenCalledTimes(1);
+        expect(prismaService.news.delete).toHaveBeenCalledWith({
+            where: { id: newsMock[0].id }
+        })
+    })
+
 })
