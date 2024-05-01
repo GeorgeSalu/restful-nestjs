@@ -1,7 +1,7 @@
 import { PrismaService } from "../prisma/prisma.service";
 import { CategoriesService } from "./categories.service";
 import { Test, TestingModule } from "@nestjs/testing";
-import { prismaCategoriesMock } from "./mocks/categories.mock";
+import { categoriesMock, prismaCategoriesMock } from "./mocks/categories.mock";
 
 describe(`${CategoriesService.name}`, () => {
 
@@ -22,6 +22,40 @@ describe(`${CategoriesService.name}`, () => {
 
     afterEach(() => {
         jest.clearAllMocks();
+    })
+
+    it('should be defined', () => {
+        expect(service).toBeDefined();
+    })
+
+    it(`${CategoriesService.prototype.create.name} should create a new category`, async () => {
+        const response = await service.create(categoriesMock[0]);
+
+        expect(response).toEqual(categoriesMock[0]);
+        expect(prismaService.categories.create).toHaveBeenCalledTimes(1);
+    })
+
+    it(`${CategoriesService.prototype.findByName.name} should return a single category`, async () => {
+        const response = await service.findByName(categoriesMock[0].name);
+
+        expect(response).toEqual(categoriesMock[0]);
+        expect(prismaService.categories.findFirst).toHaveBeenCalledTimes(1);
+    })
+
+    it(`${CategoriesService.prototype.findByName.name} should return null whan category is not found`, async () => {
+        jest.spyOn(prismaService.categories, 'findFirst').mockReturnValueOnce(null);
+        const response = await service.findByName('teste');
+
+        expect(response).toBeNull()
+        expect(prismaService.categories.findFirst).toHaveBeenCalledTimes(1);
+    })
+
+
+    it(`${CategoriesService.prototype.findAll.name} should return all categories`, async () => {
+        const response = await service.findAll();
+
+        expect(response).toEqual(categoriesMock)
+        expect(prismaService.categories.findMany).toHaveBeenCalledTimes(1);
     })
 
 })
