@@ -42,7 +42,7 @@ describe(`${CategoriesService.name}`, () => {
         expect(prismaService.categories.findFirst).toHaveBeenCalledTimes(1);
     })
 
-    it(`${CategoriesService.prototype.findByName.name}() should return null whan category is not found`, async () => {
+    it(`${CategoriesService.prototype.findByName.name}() should return null when category is not found`, async () => {
         jest.spyOn(prismaService.categories, 'findFirst').mockReturnValueOnce(null);
         const response = await service.findByName('teste');
 
