@@ -1,4 +1,4 @@
-## apis rest nestjs
+## api rest nestjs
 
  - TypeORM/PrismaORM
  - NodeJs
