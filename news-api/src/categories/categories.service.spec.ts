@@ -1,4 +1,4 @@
-import { PrismaService } from "src/prisma/prisma.service";
+import { PrismaService } from "../prisma/prisma.service";
 import { CategoriesService } from "./categories.service";
 import { Test, TestingModule } from "@nestjs/testing";
 import { prismaCategoriesMock } from "./mocks/categories.mock";
