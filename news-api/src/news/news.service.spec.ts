@@ -106,7 +106,7 @@ describe(`${NewsService.name}`, () => {
         })
     })
 
-    it(`${NewsService.prototype.update.name}() should delete new`, async () => {
+    it(`${NewsService.prototype.delete.name}() should delete new`, async () => {
 
         jest.spyOn(prismaService.news, 'delete').mockResolvedValueOnce(null);
         const response = await service.delete(newsMock[0].id);
