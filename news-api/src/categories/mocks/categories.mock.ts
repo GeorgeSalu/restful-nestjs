@@ -16,5 +16,11 @@ export const categoriesMock: Categories[] = [
 ]
 
 export const prismaCategoriesMock = {
-
+    categories: {
+        create: jest.fn().mockReturnValue(categoriesMock[0]),
+        findMany: jest.fn().mockReturnValue(categoriesMock),
+        findFirst: jest.fn().mockReturnValue(categoriesMock[0]),
+        update: jest.fn().mockReturnValue(categoriesMock[0]),
+        delete: jest.fn()
+    }
 }

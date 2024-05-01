@@ -1,6 +1,7 @@
 import { PrismaService } from "src/prisma/prisma.service";
 import { CategoriesService } from "./categories.service";
 import { Test, TestingModule } from "@nestjs/testing";
+import { prismaCategoriesMock } from "./mocks/categories.mock";
 
 describe(`${CategoriesService.name}`, () => {
 
@@ -11,9 +12,16 @@ describe(`${CategoriesService.name}`, () => {
         const module: TestingModule = await Test.createTestingModule({
             providers: [
                 CategoriesService,
-                { provide: PrismaService, useValue: null }
+                { provide: PrismaService, useValue: prismaCategoriesMock }
             ],
-        }).compile()
+        }).compile();
+
+        service = module.get<CategoriesService>(CategoriesService);
+        prismaService = module.get<PrismaService>(PrismaService);
+    })
+
+    afterEach(() => {
+        jest.clearAllMocks();
     })
 
 })
