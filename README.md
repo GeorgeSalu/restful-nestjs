@@ -2,7 +2,7 @@
 
  - TypeORM/PrismaORM
  - NodeJs
- - Mysql/MongoDB/SQLite
+ - Mysql/postgresql/MongoDB/SQLite
  - Docker
  - Typescript
  - NestJs
