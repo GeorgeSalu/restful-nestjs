@@ -4,7 +4,7 @@
  - NodeJs
  - Mysql/PostgreSQL/MongoDB/SQLite
  - Docker
- - Swagger
+ - Swagger (Open API)
  - Typescript
  - NestJs
  - Jest
