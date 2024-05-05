@@ -2,7 +2,7 @@
 
  - TypeORM/PrismaORM
  - NodeJs
- - Mysql/PostgreSQL/MongoDB/SQLite
+ - MySQL/PostgreSQL/MongoDB/SQLite
  - Docker
  - Swagger (OpenAPI Specification)
  - Typescript
