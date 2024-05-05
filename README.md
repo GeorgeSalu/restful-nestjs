@@ -5,6 +5,6 @@
  - MySQL/PostgreSQL/MongoDB/SQLite
  - Docker
  - Swagger (OpenAPI Specification)
- - Typescript
+ - TypeScript
  - NestJs
  - Jest
