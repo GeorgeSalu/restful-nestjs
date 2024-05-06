@@ -14,6 +14,8 @@ export class CoursesController {
     }
 
     @Post()
+    // capturando uma propriedade especifica do payload
+    // create(@Body('name') body) {
     create(@Body() body) {
         return body;
     }
