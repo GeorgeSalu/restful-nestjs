@@ -10,9 +10,15 @@ import {
     Post,
     Res
 } from '@nestjs/common';
+import { CourseService } from './courses.service';
 
 @Controller('courses')
 export class CoursesController {
+
+
+    constructor(
+        private readonly courseService: CourseService
+    ) { }
 
     @Get()
     findAll(@Res() response) {
