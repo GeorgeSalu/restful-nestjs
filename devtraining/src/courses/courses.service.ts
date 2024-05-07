@@ -10,6 +10,12 @@ export class CourseService {
             name: 'fundamentos do framework nestjs',
             description: 'fundamentos do framework nestjs',
             tags: ['nodejs', 'nestjs', 'javascript']
+        },
+        {
+            id: 2,
+            name: 'fundamentos do framework express',
+            description: 'fundamentos do framework express',
+            tags: ['nodejs', 'express', 'javascript']
         }
     ];
 
