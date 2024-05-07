@@ -3,12 +3,9 @@ import {
     Controller,
     Delete,
     Get,
-    HttpCode,
-    HttpStatus,
     Param,
     Patch,
-    Post,
-    Res
+    Post
 } from '@nestjs/common';
 import { CourseService } from './courses.service';
 
