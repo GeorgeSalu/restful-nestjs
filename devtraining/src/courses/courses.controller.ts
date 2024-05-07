@@ -1,11 +1,11 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Res } from '@nestjs/common';
 
 @Controller('courses')
 export class CoursesController {
 
     @Get()
-    findAll() {
-        return 'listagem de cursos'
+    findAll(@Res() response) {
+        return response.status(200).send('listagem de cursos');
     }
 
     @Get(':id')
@@ -14,6 +14,7 @@ export class CoursesController {
     }
 
     @Post()
+    @HttpCode(HttpStatus.NO_CONTENT)
     // capturando uma propriedade especifica do payload
     // create(@Body('name') body) {
     create(@Body() body) {
