@@ -29,4 +29,15 @@ export class TaskService {
         throw new HttpException(`task with id ${task.id} not found`, HttpStatus.BAD_REQUEST);
     }
 
+    remove(id: string) {
+        let taskIndex = this.tasks.findIndex(t => t.id === id);
+
+        if (taskIndex >= 0) {
+            this.tasks.slice(taskIndex, 1);
+            return;
+        }
+
+        throw new HttpException(`task with id ${id} not found`, HttpStatus.BAD_REQUEST);
+    }
+
 }
