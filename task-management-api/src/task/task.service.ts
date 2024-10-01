@@ -33,7 +33,7 @@ export class TaskService {
         let taskIndex = this.tasks.findIndex(t => t.id === id);
 
         if (taskIndex >= 0) {
-            this.tasks.slice(taskIndex, 1);
+            this.tasks.splice(taskIndex, 1);
             return;
         }
 
